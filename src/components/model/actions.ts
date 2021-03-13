@@ -1,15 +1,11 @@
-import React from "react";
-import {
-  SET_FIELD_VALUE,
-  SET_VALIDATION_RESULTS,
-  SET_VALIDATORS,
-} from "./actionTypes";
-import { CrunchFormAction } from "./crunchForm";
-import { CrunchFormValue, ValidationResult, Validator } from "./shared";
+import React from 'react';
+import { SET_FIELD_VALUE, SET_VALIDATION_RESULTS, SET_VALIDATORS } from './actionTypes';
+import { CrunchFormAction } from './crunchForm';
+import { CrunchFormValue, ValidationResult, Validator } from './shared';
 
 export const SetValidationResults = (
   validationResults: ValidationResult[],
-  dispatch: React.Dispatch<CrunchFormAction>
+  dispatch: React.Dispatch<CrunchFormAction>,
 ) => {
   dispatch({
     type: SET_VALIDATION_RESULTS,
@@ -19,11 +15,7 @@ export const SetValidationResults = (
   });
 };
 
-export const SetValue = (
-  fieldKey: string,
-  value: CrunchFormValue,
-  dispatch: React.Dispatch<CrunchFormAction>
-) => {
+export const SetValue = (fieldKey: string, value: CrunchFormValue, dispatch: React.Dispatch<CrunchFormAction>) => {
   dispatch({
     type: SET_FIELD_VALUE,
     payload: {
@@ -36,7 +28,7 @@ export const SetValue = (
 export const SetValidators = (
   fieldKey: string,
   validators: Validator[],
-  dispatch: React.Dispatch<CrunchFormAction>
+  dispatch: React.Dispatch<CrunchFormAction>,
 ) => {
   dispatch({
     type: SET_VALIDATORS,
