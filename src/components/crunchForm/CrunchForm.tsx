@@ -17,6 +17,7 @@ import {
   ValidationResult,
   Validator,
 } from "../model/shared";
+import { getValue as getDeepValue } from "../utils/deepValueManipulation";
 import reducer from "./reducer";
 
 interface Props {
@@ -37,15 +38,15 @@ const CrunchForm = (props: Props) => {
   };
 
   const getValidationResults = (fieldKey: string) => {
-    return fields.validationResults[fieldKey];
+    return getDeepValue(fields.validationResults, fieldKey);
   };
 
   const getValue = (fieldKey: string) => {
-    return fields.values[fieldKey];
+    return getDeepValue(fields.values, fieldKey);
   };
 
   const validate = (fieldKey: string) => {
-    const validators = fields.validators[fieldKey];
+    const validators = getDeepValue(fields.validators, fieldKey);
     const errors: ValidationResult[] = [];
     for (let validator of validators) {
       const res = validator(getValue(fieldKey));
