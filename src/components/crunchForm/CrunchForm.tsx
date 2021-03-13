@@ -5,12 +5,7 @@ import {
   SetValidators,
   SetValue,
 } from "../model/actions";
-import {
-  SET_VALIDATION_RESULTS,
-  SET_FIELD_VALUE,
-  SET_VALIDATORS,
-} from "../model/actionTypes";
-import { CrunchFormFieldState, CrunchFormReducer } from "../model/crunchForm";
+import { CrunchFormFieldState } from "../model/crunchForm";
 import {
   CrunchFormValue,
   Dictionary,
@@ -23,10 +18,11 @@ import reducer from "./reducer";
 interface Props {
   className?: string;
   onSubmit?: (body: Dictionary<CrunchFormValue>) => void;
+  children?: JSX.Element | JSX.Element[];
 }
 
 const CrunchForm = (props: Props) => {
-  const { className, onSubmit } = props;
+  const { className, onSubmit, children } = props;
 
   const [fields, dispatch] = useReducer(reducer, {} as CrunchFormFieldState);
 
@@ -81,7 +77,9 @@ const CrunchForm = (props: Props) => {
         setValue,
       }}
     >
-      <form onSubmit={handleSubmit} className={className}></form>
+      <form onSubmit={handleSubmit} className={className}>
+        {children}
+      </form>
     </CrunchFormContext.Provider>
   );
 };
