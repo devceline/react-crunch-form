@@ -1,6 +1,8 @@
-import React from "react";
+import React from 'react';
 
-interface Props {}
+interface Props {
+  field: string;
+}
 
 const CrunchInput = (props: Props) => {
   return <div></div>;

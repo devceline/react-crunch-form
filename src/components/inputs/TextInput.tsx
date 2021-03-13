@@ -1,6 +1,8 @@
-import React from "react";
+import React from 'react';
 
-interface Props {}
+interface Props {
+  field: string;
+}
 
 const TextInput = (props: Props) => {
   return <div></div>;

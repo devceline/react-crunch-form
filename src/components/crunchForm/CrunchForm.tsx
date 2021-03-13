@@ -1,19 +1,10 @@
-import React, { useReducer } from "react";
-import CrunchFormContext from "../contexts/CrunchFormContext";
-import {
-  SetValidationResults,
-  SetValidators,
-  SetValue,
-} from "../model/actions";
-import { CrunchFormFieldState } from "../model/crunchForm";
-import {
-  CrunchFormValue,
-  Dictionary,
-  ValidationResult,
-  Validator,
-} from "../model/shared";
-import { getValue as getDeepValue } from "../utils/deepValueManipulation";
-import reducer from "./reducer";
+import React, { useReducer } from 'react';
+import CrunchFormContext from '../contexts/CrunchFormContext';
+import { SetValidationResults, SetValidators, SetValue } from '../model/actions';
+import { CrunchFormFieldState } from '../model/crunchForm';
+import { CrunchFormValue, Dictionary, ValidationResult, Validator } from '../model/shared';
+import { getValue as getDeepValue } from '../utils/deepValueManipulation';
+import reducer from './reducer';
 
 interface Props {
   className?: string;
@@ -44,17 +35,14 @@ const CrunchForm = (props: Props) => {
   const validate = (fieldKey: string) => {
     const validators = getDeepValue(fields.validators, fieldKey);
     const errors: ValidationResult[] = [];
-    for (let validator of validators) {
+    for (const validator of validators) {
       const res = validator(getValue(fieldKey));
       if (res) errors.push(res);
     }
     SetValidationResults(errors, dispatch);
   };
 
-  const setValidators = (
-    fieldKey: string,
-    validators: Validator | Validator[]
-  ) => {
+  const setValidators = (fieldKey: string, validators: Validator | Validator[]) => {
     if (!Array.isArray(validators)) {
       validators = [validators];
     }

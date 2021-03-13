@@ -8,7 +8,7 @@
   "scripts": {
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.ts\"",
-    "lint": "tslint -p tsconfig"
+    "lint": "tslint -p tsconfig.json"
   },
   "license": "MIT",
   "private": false,

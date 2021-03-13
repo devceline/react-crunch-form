@@ -1,19 +1,17 @@
 export const setValue = (obj: any, path: string, value: any) => {
-  const split = path.split(".");
+  const split = path.split('.');
   let o = obj;
   while (split.length - 1) {
     const seg = split.shift()!;
     if (!(seg in o)) o[seg] = {};
     o = o[seg];
   }
-  console.log(path);
   if (!o) o = {};
   o[split[0]] = value;
 };
 
 export const getValue = (obj: any, path: string) => {
-  const split = path.split(".").reverse();
-  console.log(split);
+  const split = path.split('.').reverse();
   let o = { ...obj };
   while (split.length - 1) {
     const seg = split.pop();
