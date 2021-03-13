@@ -2,13 +2,19 @@
   "name": "react-crunch-form",
   "version": "0.0.1",
   "description": "A library that enables you to quickly crunch out a form that performs as you would expect",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "repository": "git@github.com:shaheensarafa/react-crunch-form.git",
   "author": "Shaheen Sarafa",
   "scripts": {
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.ts\"",
-    "lint": "tslint -p tsconfig.json"
+    "lint": "tslint -p tsconfig.json",
+    "prepare": "yarn build",
+    "prepublishOnly": "yarn lint",
+    "preversion": "yarn lint",
+    "version": "yarn format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "license": "MIT",
   "private": false,
