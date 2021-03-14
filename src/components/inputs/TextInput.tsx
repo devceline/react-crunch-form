@@ -1,11 +1,25 @@
-import React from 'react';
+import React from 'react'
 
 interface Props {
-  field: string;
+  value: string
+  onChange: (val: string) => void
+  onBlur?: () => void
+  className?: string
+  textarea?: boolean
 }
 
 const TextInput = (props: Props) => {
-  return <div></div>;
-};
+  const { value, onChange, onBlur, className, textarea } = props
 
-export default TextInput;
+  return (
+    <input
+      className={className}
+      type={textarea ? 'textarea' : 'text'}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      onBlur={() => onBlur && onBlur()}
+    />
+  )
+}
+
+export default TextInput

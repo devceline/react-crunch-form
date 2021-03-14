@@ -1,58 +1,67 @@
-import React, { useReducer } from 'react';
-import CrunchFormContext from '../contexts/CrunchFormContext';
-import { SetValidationResults, SetValidators, SetValue } from '../model/actions';
-import { CrunchFormFieldState } from '../model/crunchForm';
-import { CrunchFormValue, Dictionary, ValidationResult, Validator } from '../model/shared';
-import { getValue as getDeepValue } from '../utils/deepValueManipulation';
-import reducer from './reducer';
+import React, { useReducer } from 'react'
+import CrunchFormContext from '../contexts/CrunchFormContext'
+import { SetValidationResults, SetValidators, SetValue } from '../model/actions'
+import { CrunchFormFieldState } from '../model/crunchForm'
+import {
+  CrunchFormValue,
+  Dictionary,
+  ValidationResult,
+  Validator
+} from '../model/shared'
+import { getValue as getDeepValue } from '../utils/deepValueManipulation'
+import reducer from './reducer'
 
 interface Props {
-  className?: string;
-  onSubmit?: (body: Dictionary<CrunchFormValue>) => void;
-  children?: JSX.Element | JSX.Element[];
+  className?: string
+  onSubmit?: (body: Dictionary<CrunchFormValue>) => void
+  children?: JSX.Element | JSX.Element[]
 }
 
 const CrunchForm = (props: Props) => {
-  const { className, onSubmit, children } = props;
+  const { className, onSubmit, children } = props
 
-  const [fields, dispatch] = useReducer(reducer, {} as CrunchFormFieldState);
+  const [fields, dispatch] = useReducer(reducer, {} as CrunchFormFieldState)
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault()
     if (onSubmit) {
-      onSubmit(fields.values);
+      onSubmit(fields.values)
     }
-  };
+  }
 
   const getValidationResults = (fieldKey: string) => {
-    return getDeepValue(fields.validationResults, fieldKey);
-  };
+    return getDeepValue(fields.validationResults, fieldKey)
+  }
 
   const getValue = (fieldKey: string) => {
-    return getDeepValue(fields.values, fieldKey);
-  };
+    return getDeepValue(fields.values, fieldKey)
+  }
 
   const validate = (fieldKey: string) => {
-    const validators = getDeepValue(fields.validators, fieldKey);
-    const errors: ValidationResult[] = [];
+    const validators = getDeepValue(fields.validators, fieldKey)
+    if (!validators) return
+    const errors: ValidationResult[] = []
     for (const validator of validators) {
-      const res = validator(getValue(fieldKey));
-      if (res) errors.push(res);
+      const res = validator(getValue(fieldKey))
+      if (res) errors.push(res)
     }
-    SetValidationResults(errors, dispatch);
-  };
+    SetValidationResults(fieldKey, errors, dispatch)
+  }
 
-  const setValidators = (fieldKey: string, validators: Validator | Validator[]) => {
+  const setValidators = (
+    fieldKey: string,
+    validators: Validator | Validator[]
+  ) => {
     if (!Array.isArray(validators)) {
-      validators = [validators];
+      validators = [validators]
     }
 
-    SetValidators(fieldKey, validators, dispatch);
-  };
+    SetValidators(fieldKey, validators, dispatch)
+  }
 
   const setValue = (fieldKey: string, value: CrunchFormValue) => {
-    SetValue(fieldKey, value, dispatch);
-  };
+    SetValue(fieldKey, value, dispatch)
+  }
 
   return (
     <CrunchFormContext.Provider
@@ -62,14 +71,14 @@ const CrunchForm = (props: Props) => {
         getValue,
         validate,
         setValidators,
-        setValue,
+        setValue
       }}
     >
       <form onSubmit={handleSubmit} className={className}>
         {children}
       </form>
     </CrunchFormContext.Provider>
-  );
-};
+  )
+}
 
-export default CrunchForm;
+export default CrunchForm

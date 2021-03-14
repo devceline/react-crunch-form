@@ -1,37 +1,45 @@
-import { SET_VALIDATORS, SET_VALIDATION_RESULTS, SET_FIELD_VALUE } from '../model/actionTypes';
-import { CrunchFormReducer } from '../model/crunchForm';
-import { setValue } from '../utils/deepValueManipulation';
+import {
+  SET_VALIDATORS,
+  SET_VALIDATION_RESULTS,
+  SET_FIELD_VALUE
+} from '../model/actionTypes'
+import { CrunchFormReducer } from '../model/crunchForm'
+import { setValue } from '../utils/deepValueManipulation'
 
 const reducer: CrunchFormReducer = (state, action) => {
   switch (action.type) {
     case SET_VALIDATORS: {
-      const validators = { ...state.validators };
-      setValue(validators, action.payload!.field, action.payload!.validators);
+      const validators = { ...state.validators }
+      setValue(validators, action.payload!.fieldKey, action.payload!.validators)
       return {
         ...state,
-        validators,
-      };
+        validators
+      }
     }
     case SET_VALIDATION_RESULTS: {
-      const validationResults = { ...state.validationResults };
-      setValue(validationResults, action.payload!.field, action.payload!.validationResults);
+      const validationResults = { ...state.validationResults }
+      setValue(
+        validationResults,
+        action.payload!.fieldKey,
+        action.payload!.validationResults
+      )
       return {
         ...state,
-        validationResults,
-      };
+        validationResults
+      }
     }
     case SET_FIELD_VALUE: {
-      const values = { ...state.values };
-      setValue(values, action.payload!.field, action.payload!.value);
+      const values = { ...state.values }
+      setValue(values, action.payload!.fieldKey, action.payload!.value)
 
       return {
         ...state,
-        values,
-      };
+        values
+      }
     }
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default reducer;
+export default reducer
