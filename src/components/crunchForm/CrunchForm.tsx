@@ -15,10 +15,11 @@ interface Props {
   className?: string
   onSubmit?: (body: Dictionary<CrunchFormValue>) => void
   children?: JSX.Element | JSX.Element[]
+  style?: React.CSSProperties
 }
 
 const CrunchForm = (props: Props) => {
-  const { className, onSubmit, children } = props
+  const { className, onSubmit, style, children } = props
 
   const [fields, dispatch] = useReducer(reducer, {} as CrunchFormFieldState)
 
@@ -74,7 +75,7 @@ const CrunchForm = (props: Props) => {
         setValue
       }}
     >
-      <form onSubmit={handleSubmit} className={className}>
+      <form style={style} onSubmit={handleSubmit} className={className}>
         {children}
       </form>
     </CrunchFormContext.Provider>
