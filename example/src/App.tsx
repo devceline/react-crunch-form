@@ -4,7 +4,6 @@ import CrunchForm, {
   CrunchInput,
   CrunchInputValidationDisplay
 } from 'react-crunch-form'
-import 'react-crunch-form/dist/index.css'
 
 const App = () => {
   return (
