@@ -1,14 +1,18 @@
 import React, { useReducer } from 'react'
-import CrunchFormContext from '../contexts/CrunchFormContext'
-import { SetValidationResults, SetValidators, SetValue } from '../model/actions'
-import { CrunchFormFieldState } from '../model/crunchForm'
+import CrunchFormContext from '../../contexts/CrunchFormContext'
+import {
+  SetValidationResults,
+  SetValidators,
+  SetValue
+} from '../../model/actions'
+import { CrunchFormFieldState } from '../../model/crunchForm'
 import {
   CrunchFormValue,
   Dictionary,
   ValidationResult,
   Validator
-} from '../model/shared'
-import { getValue as getDeepValue } from '../utils/deepValueManipulation'
+} from '../../model/shared'
+import { getValue as getDeepValue } from '../../utils/deepValueManipulation'
 import reducer from './reducer'
 
 interface Props {

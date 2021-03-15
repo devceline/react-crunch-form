@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import CrunchFormContext from '../contexts/CrunchFormContext'
+import CrunchFormContext from '../../contexts/CrunchFormContext'
 
 interface Props {
   field: string

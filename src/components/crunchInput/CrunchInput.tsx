@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from 'react'
 import TextInput from '../inputs/TextInput'
-import { InputType } from '../model/crunchInput'
-import CrunchFormContext from '../contexts/CrunchFormContext'
-import { Validator } from '../model/shared'
+import { InputType } from '../../model/crunchInput'
+import CrunchFormContext from '../../contexts/CrunchFormContext'
+import { Validator } from '../../model/shared'
 
 interface Props {
   field: string

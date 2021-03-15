@@ -2,9 +2,9 @@ import {
   SET_VALIDATORS,
   SET_VALIDATION_RESULTS,
   SET_FIELD_VALUE
-} from '../model/actionTypes'
-import { CrunchFormReducer } from '../model/crunchForm'
-import { setValue } from '../utils/deepValueManipulation'
+} from '../../model/actionTypes'
+import { CrunchFormReducer } from '../../model/crunchForm'
+import { setValue } from '../../utils/deepValueManipulation'
 
 const reducer: CrunchFormReducer = (state, action) => {
   switch (action.type) {
