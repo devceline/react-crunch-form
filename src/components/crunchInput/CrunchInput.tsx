@@ -1,17 +1,18 @@
-import React, { useContext, useEffect } from 'react'
-import TextInput from '../inputs/TextInput'
-import { InputType } from '../../model/crunchInput'
-import CrunchFormContext from '../../contexts/CrunchFormContext'
-import { Dictionary, Validator } from '../../model/shared'
-import SelectInput from '../inputs/SelectInput'
+import React, { useContext, useEffect } from 'react';
+import TextInput from '../inputs/TextInput';
+import { InputType } from '../../model/crunchInput';
+import CrunchFormContext from '../../contexts/CrunchFormContext';
+import { Dictionary, Validator } from '../../model/shared';
+import SelectInput from '../inputs/SelectInput';
+import DateInput from '../inputs/DateInput';
 
 interface Props {
-  field: string
-  type?: InputType
-  className?: string
-  validators?: Validator[] | Validator
-  lookupFields?: Dictionary<string | number>
-  getLookupFieldsAsync?: () => Promise<Dictionary<string | number>>
+  field: string;
+  type?: InputType;
+  className?: string;
+  validators?: Validator[] | Validator;
+  lookupFields?: Dictionary<string | number>;
+  getLookupFieldsAsync?: () => Promise<Dictionary<string | number>>;
 }
 
 const CrunchInput = (props: Props) => {
@@ -22,13 +23,13 @@ const CrunchInput = (props: Props) => {
     validators,
     className,
     type = 'text'
-  } = props
+  } = props;
 
-  const ctx = useContext(CrunchFormContext)
+  const ctx = useContext(CrunchFormContext);
 
   useEffect(() => {
-    if (validators) ctx.setValidators(field, validators)
-  }, [])
+    if (validators) ctx.setValidators(field, validators);
+  }, []);
 
   const getInput = () => {
     switch (type) {
@@ -40,7 +41,7 @@ const CrunchInput = (props: Props) => {
             textarea={type === 'textarea'}
             className={className}
           />
-        )
+        );
       case 'select':
         return (
           <SelectInput
@@ -49,13 +50,15 @@ const CrunchInput = (props: Props) => {
             getLookupFieldsAsync={getLookupFieldsAsync}
             lookupFields={lookupFields}
           />
-        )
+        );
+      case 'datetime':
+        return <DateInput field={field} className={className} />;
       default:
-        return <input></input>
+        return <input></input>;
     }
-  }
+  };
 
-  return getInput()
-}
+  return getInput();
+};
 
-export default CrunchInput
+export default CrunchInput;

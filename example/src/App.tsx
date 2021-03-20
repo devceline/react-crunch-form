@@ -2,7 +2,8 @@ import React from 'react';
 
 import CrunchForm, {
   CrunchInput,
-  CrunchInputValidationDisplay
+  CrunchInputValidationDisplay,
+  CrunchSubmit
 } from 'react-crunch-form';
 
 const getLookup = () => {
@@ -59,6 +60,17 @@ const App = () => {
           getLookupFieldsAsync={getLookup}
         />
       </div>
+
+      <div>
+        <h6>
+          Native html datepicker.{' '}
+          <span style={{ color: 'red', margin: '0 1em' }}>
+            Does not work on Safari or IE
+          </span>
+        </h6>
+        <CrunchInput type='datetime' field='datefield' />
+      </div>
+      <CrunchSubmit>Submit</CrunchSubmit>
     </CrunchForm>
   );
 };
