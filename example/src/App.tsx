@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
 import CrunchForm, {
   CrunchInput,
   CrunchInputValidationDisplay
-} from 'react-crunch-form'
+} from 'react-crunch-form';
 
 const getLookup = () => {
   return new Promise<{ [k: string]: string }>((resolve) => {
@@ -11,13 +11,13 @@ const getLookup = () => {
       resolve({
         foo: 'bar',
         baz: 'bor'
-      })
-    }, 300)
-  })
-}
+      });
+    }, 300);
+  });
+};
 
 const App = () => {
-  getLookup().then((v) => console.log({ v }))
+  getLookup().then((v) => console.log({ v }));
 
   return (
     <CrunchForm className='main' onSubmit={(body) => console.log(body)}>
@@ -25,12 +25,13 @@ const App = () => {
         <CrunchInput
           validators={[
             (v) => {
-              if (v.length > 5) return 'TOO LONG'
-              return false
+              if (!v) return 'required';
+              if (v.length > 5) return 'TOO LONG';
+              return false;
             }
           ]}
           field='something'
-          type='text'
+          type='textarea'
         />
         <CrunchInputValidationDisplay
           className='validation-error'
@@ -59,7 +60,7 @@ const App = () => {
         />
       </div>
     </CrunchForm>
-  )
-}
+  );
+};
 
-export default App
+export default App;
