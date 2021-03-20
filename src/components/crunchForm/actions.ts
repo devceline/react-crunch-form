@@ -3,9 +3,13 @@ import {
   SET_FIELD_VALUE,
   SET_VALIDATION_RESULTS,
   SET_VALIDATORS
-} from './actionTypes'
-import { CrunchFormAction } from './crunchForm'
-import { CrunchFormValue, ValidationResult, Validator } from './shared'
+} from '../../model/actionTypes'
+import { CrunchFormAction } from '../../model/crunchForm'
+import {
+  CrunchFormValue,
+  ValidationResult,
+  Validator
+} from '../../model/shared'
 
 export const SetValidationResults = (
   fieldKey: string,

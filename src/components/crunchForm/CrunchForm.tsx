@@ -1,10 +1,6 @@
 import React, { useReducer } from 'react'
 import CrunchFormContext from '../../contexts/CrunchFormContext'
-import {
-  SetValidationResults,
-  SetValidators,
-  SetValue
-} from '../../model/actions'
+import { SetValidationResults, SetValidators, SetValue } from './actions'
 import { CrunchFormFieldState } from '../../model/crunchForm'
 import {
   CrunchFormValue,

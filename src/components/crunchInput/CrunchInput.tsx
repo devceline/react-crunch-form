@@ -2,17 +2,27 @@ import React, { useContext, useEffect } from 'react'
 import TextInput from '../inputs/TextInput'
 import { InputType } from '../../model/crunchInput'
 import CrunchFormContext from '../../contexts/CrunchFormContext'
-import { Validator } from '../../model/shared'
+import { Dictionary, Validator } from '../../model/shared'
+import SelectInput from '../inputs/SelectInput'
 
 interface Props {
   field: string
   type?: InputType
   className?: string
   validators?: Validator[] | Validator
+  lookupFields?: Dictionary<string | number>
+  getLookupFieldsAsync?: () => Promise<Dictionary<string | number>>
 }
 
 const CrunchInput = (props: Props) => {
-  const { field, validators, type = 'text' } = props
+  const {
+    field,
+    getLookupFieldsAsync,
+    lookupFields,
+    validators,
+    className,
+    type = 'text'
+  } = props
 
   const ctx = useContext(CrunchFormContext)
 
@@ -22,12 +32,22 @@ const CrunchInput = (props: Props) => {
 
   const getInput = () => {
     switch (type) {
+      case 'textarea':
       case 'text':
         return (
           <TextInput
-            onBlur={() => ctx.validate(field)}
-            value={(ctx.getValue(field) as string) || ''}
-            onChange={(v) => ctx.setValue(field, v)}
+            field={field}
+            textarea={type === 'textarea'}
+            className={className}
+          />
+        )
+      case 'select':
+        return (
+          <SelectInput
+            field={field}
+            className={className}
+            getLookupFieldsAsync={getLookupFieldsAsync}
+            lookupFields={lookupFields}
           />
         )
       default:

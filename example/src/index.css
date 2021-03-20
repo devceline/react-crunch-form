@@ -12,3 +12,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.main {
+  width: 50%;
+  margin: 10rem auto;
+  background-color: #fafafa;
+  padding: 3em;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.validation-error {
+  color: red;
+  margin: 0 1em;
+  font-size: 0.75em;
+  text-transform: lowercase;
+}
