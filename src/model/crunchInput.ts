@@ -1,1 +1,1 @@
-export type InputType = 'text' | 'datetime' | 'select' | 'textarea'
+export type InputType = 'text' | 'date' | 'select' | 'textarea' | 'time';

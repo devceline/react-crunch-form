@@ -5,6 +5,7 @@ import CrunchFormContext from '../../contexts/CrunchFormContext';
 import { Dictionary, Validator } from '../../model/shared';
 import SelectInput from '../inputs/SelectInput';
 import DateInput from '../inputs/DateInput';
+import TimeInput from '../inputs/TimeInput';
 
 interface Props {
   field: string;
@@ -51,8 +52,10 @@ const CrunchInput = (props: Props) => {
             lookupFields={lookupFields}
           />
         );
-      case 'datetime':
+      case 'date':
         return <DateInput field={field} className={className} />;
+      case 'time':
+        return <TimeInput field={field} className={className} />;
       default:
         return <input></input>;
     }

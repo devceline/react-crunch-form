@@ -14,10 +14,6 @@ yarn install react-crunch-form
 ## Usage
 
 ```tsx
-import React from 'react';
-
-import React from 'react';
-
 import CrunchForm, {
   CrunchInput,
   CrunchInputValidationDisplay,
@@ -81,12 +77,21 @@ const App = () => {
 
       <div>
         <h6>
-          Native html datepicker.{' '}
+          Native html date picker.
           <span style={{ color: 'red', margin: '0 1em' }}>
             Does not work on Safari or IE
           </span>
         </h6>
-        <CrunchInput type='datetime' field='datefield' />
+        <CrunchInput type='date' field='datefield' />
+      </div>
+      <div>
+        <h6>
+          Native html time picker.
+          <span style={{ color: 'red', margin: '0 1em' }}>
+            Does not work on Safari or IE
+          </span>
+        </h6>
+        <CrunchInput type='time' field='timefield' />
       </div>
       <CrunchSubmit>Submit</CrunchSubmit>
     </CrunchForm>
